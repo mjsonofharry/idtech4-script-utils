@@ -1,0 +1,13 @@
+[
+    {
+        "game_title": "dhewm 3",
+        "mod_title": "Doom 3 Script Utils",
+        "is_pk4": true,
+        "sources": ["src"],
+        "base_path": "D:\\dhewm3",
+        "game": "base",
+        "zip_name": "d3utils",
+        "pk4_name": "zzzd3utils",
+        "should_deploy": true
+    }
+]
