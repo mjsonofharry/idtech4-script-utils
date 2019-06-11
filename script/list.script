@@ -1,62 +1,62 @@
 float strFindFrom( string text, string search, float offset ) {
-	float textLen = sys.strLength( text );
-	float searchLen = sys.strLength( search );
+    float textLen = sys.strLength( text );
+    float searchLen = sys.strLength( search );
 
-	if ( offset >= textLen ) {
-		return -1;
-	}
-	if ( searchLen > textLen ) {
-		return -1;
-	}
-	if ( text == search ) {
-		return 0;
-	}
+    if ( offset >= textLen ) {
+        return -1;
+    }
+    if ( searchLen > textLen ) {
+        return -1;
+    }
+    if ( text == search ) {
+        return 0;
+    }
 
-	float i;
-	string textPart;
-	for( i = offset; i < textLen; i++ ) {
-		if ( searchLen > ( textLen - i ) ) {
-			return -1;
-		}
+    float i;
+    string textPart;
+    for( i = offset; i < textLen; i++ ) {
+        if ( searchLen > ( textLen - i ) ) {
+            return -1;
+        }
 
-		textPart = sys.strMid( text, i, searchLen );
-		if ( textPart == search ) {
-			return i;
-		}
-	}
+        textPart = sys.strMid( text, i, searchLen );
+        if ( textPart == search ) {
+            return i;
+        }
+    }
 }
 
 float strFind( string text, string search ) {
-	return strFindFrom( text, search, 0 );
+    return strFindFrom( text, search, 0 );
 }
 
 string listInsert( string list, string val ) {
     if ( val == "" ) {
         return list;
     } else if ( list == "" ) {
-		return val + ",";
-	} else {
+        return val + ",";
+    } else {
         if ( sys.strRight(list, 1) != "," ) {
             list = list + ",";
         }
-		return list + val + ",";
-	}
+        return list + val + ",";
+    }
 }
 
 string listGet( string list, float idx ) {
-	if ( idx < 0 ) {
-		return "";
+    if ( idx < 0 ) {
+        return "";
     }
 
     float len = sys.strLength( list );
-	float pos = 0;
-	float delim = 0;
+    float pos = 0;
+    float delim = 0;
     float count;
     string element;
-	for( count = 0; pos < len; count++ ) {
-		delim = strFindFrom( list, ",", pos );
-		if ( delim == -1 ) {
-			break;
+    for( count = 0; pos < len; count++ ) {
+        delim = strFindFrom( list, ",", pos );
+        if ( delim == -1 ) {
+            break;
         }
         if ( count == idx ) {
             break;
@@ -66,10 +66,10 @@ string listGet( string list, float idx ) {
             break;
         }
         sys.wait( 0.01 );
-	}
+    }
 
-	if ( ( count == idx ) && ( delim > 0 ) ) {
-		return sys.strMid( list, pos, delim - pos );
+    if ( ( count == idx ) && ( delim > 0 ) ) {
+        return sys.strMid( list, pos, delim - pos );
     }
     return "";
 }
@@ -92,14 +92,14 @@ float listSize( string list ) {
 float listFind( string list, string val ) {
     boolean found = false;
     float len = sys.strLength( list );
-	float pos = 0;
-	float delim = 0;
+    float pos = 0;
+    float delim = 0;
     string element;
     float count;
-	for( count = 0; pos < len; count++ ) {
-		delim = strFindFrom( list, ",", pos );
-		if ( delim == -1 ) {
-			break;
+    for( count = 0; pos < len; count++ ) {
+        delim = strFindFrom( list, ",", pos );
+        if ( delim == -1 ) {
+            break;
         }
         element = sys.strMid( list, pos, delim - pos );
         if ( element == val ) {
