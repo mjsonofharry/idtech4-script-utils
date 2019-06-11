@@ -1,0 +1,36 @@
+float hacky_random( float max, vector pos ) {
+    player_base player = $player1;
+    vector target = sys.vecNormalize( pos - player.getOrigin() );
+    vector forward = sys.angToForward( player.getViewAngles() );
+    vector perp = sys.CrossProduct( forward, target );
+    vector up = '0 0 1';
+    float ang = sys.DotProduct( perp, up );
+    if ( ang < 0 ) {
+        ang *= -1;
+    }
+
+    string strTime = sys.getTime();
+    float len = sys.strLength( strTime );
+    boolean isDecimal = false;
+    string buf = "0.";
+    string ch;
+    float i;
+    for ( i = 0; i < len; i++ ) {
+        ch = sys.strMid( strTime, i, 1);
+        if ( ch == "."  ) {
+            isDecimal = true;
+        } else if ( isDecimal ) {
+            buf = buf + ch;
+        }
+    }
+    float dec = sys.strToFloat( buf );
+
+    float rnd = sys.random( 1 );
+
+    ang *= 0.4;
+    dec *= 0.4;
+    rnd *= 0.2;
+    float result = ( ang + dec + rnd ) * max;
+
+    return result;
+}
