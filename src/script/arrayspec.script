@@ -29,6 +29,20 @@ void arraySpecMain() {
     runTest("arrayAppend_valueIntoMax", arrayAppend(STR_SIZE_128, "0"), "");
     runTest("arrayAppend_valueIntoMaxComma", arrayAppend(STR_SIZE_127, "0"), "");
 
+    // arrayHead
+    displaySuite("arrayHead");
+    runTest("arrayHead_empty", arrayHead(""), "");
+    runTest("arrayHead_single", arrayHead("arr1"), "arr1");
+    runTest("arrayHead_double", arrayHead("arr1,arr2"), "arr1");
+    runTest("arrayHead_triple", arrayHead("arr1,arr2,arr3"), "arr1");
+
+    // arrayTail
+    displaySuite("arrayTail");
+    runTest("arrayTail_empty", arrayTail(""), "");
+    runTest("arrayTail_single", arrayTail("arr1"), "");
+    runTest("arrayTail_double", arrayTail("arr1,arr2"), "arr2");
+    runTest("arrayTail_triple", arrayTail("arr1,arr2,arr3"), "arr2,arr3");
+
     // arrayGet
     displaySuite("arrayGet");
     runTest("arrayGet_first", arrayGet("array1,array2,array3", 0), "array1");

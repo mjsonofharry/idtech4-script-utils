@@ -43,6 +43,22 @@ string arrayAppend( string array, string val ) {
     }
 }
 
+string arrayHead( string array ) {
+    float delim = strFind( array, "," );
+    if ( delim < 0 ) {
+        delim = sys.strLength( array );
+    }
+    return sys.strLeft( array, delim );
+}
+
+string arrayTail( string array ) {
+    float delim = strFind( array, "," );
+    if ( delim < 0 ) {
+        return "";
+    }
+    return sys.strSkip( array, delim + 1 );
+}
+
 string arrayGet( string array, float idx ) {
     if ( idx < 0 ) {
         return "";
