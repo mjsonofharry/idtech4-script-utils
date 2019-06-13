@@ -14,6 +14,7 @@ Add the following lines to your main script (e.g. doom_main.script):
 
 Add this additional script:
 ```
+#include "script/testingcore.script"
 #include "script/arrayspec.script"
 #include "script/listspec.script"
 ```
