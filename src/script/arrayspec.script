@@ -1,0 +1,71 @@
+#define STR_SIZE_127 "-------------------------------------------------------------------------------------------------------------------------------"
+#define STR_SIZE_128 "--------------------------------------------------------------------------------------------------------------------------------"
+
+void displaySuite(string id) {
+    sys.println("");
+    sys.println(" ----- Running testing suite for " + id + " -----");
+}
+
+float runTest(string id, string actual, string expected) {
+    if (actual == expected) {
+        sys.println(id + " passed");
+        return 1;
+    } else {
+        sys.println(id + " FAILED - expected '" + expected + "' but got '" + actual + "'");
+        return 0;
+    }
+}
+
+void arraySpecMain() {
+    runTest("failure_test", true, false);
+
+    // strFind
+    displaySuite("strFind");
+    runTest("strFind_start", strFind("hello world", "h"), 0);
+    runTest("strFind_end", strFind("hello world", "d"), 10);
+    runTest("strFind_middle", strFind("hello world", " "), 5);
+    runTest("strFind_exact", strFind("h", "h"), 0);
+    runTest("strFind_notFound", strFind("hello world", ","), -1);
+    runTest("strFind_tooLong", strFind("hello world", "hello world!"), -1);
+    runTest("strFind_multiStart", strFind("hello world", "hell"), 0);
+    runTest("strFind_multiEnd", strFind("hello world", "orld"), 7);
+    runTest("strFind_multiMiddle", strFind("hello world", "o w"), 4);
+    runTest("strFind_multiExact", strFind("hello world", "hello world"), 0);
+    runTest("strFind_multiNotFound", strFind("hello world", ","), -1);
+
+    // arrayAppend
+    displaySuite("arrayAppend");
+    runTest("arrayAppend_valueIntoEmpty", arrayAppend("", "value"), "value");
+    runTest("arrayAppend_value", arrayAppend("array1,array2", "array3"), "array1,array2,array3");
+    runTest("arrayAppend_nothingIntoEmpty", arrayAppend("", ""), "");
+    runTest("arrayAppend_nothing", arrayAppend("array1,array2", ""), "array1,array2");
+    runTest("arrayAppend_arrays", arrayAppend("x,y,z", "a,b,c"), "x,y,z,a,b,c");
+    runTest("arrayAppend_maxIntoEmpty", arrayAppend("", STR_SIZE_128), STR_SIZE_128);
+    runTest("arrayAppend_valueIntoMax", arrayAppend(STR_SIZE_128, "0"), "");
+    runTest("arrayAppend_valueIntoMaxComma", arrayAppend(STR_SIZE_127, "0"), "");
+
+    // arrayGet
+    displaySuite("arrayGet");
+    runTest("arrayGet_first", arrayGet("array1,array2,array3", 0), "array1");
+    runTest("arrayGet_last", arrayGet("array1,array2,array3", 2), "array3");
+    runTest("arrayGet_middle", arrayGet("array1,array2,array3", 1), "array2");
+    runTest("arrayGet_fromEmpty", arrayGet("", 0), "");
+    runTest("arrayGet_nothingFromEmpty", arrayGet("", 0), "");
+    runTest("arrayGet_negative", arrayGet("array1,array2,array3", -1), "");
+    runTest("arrayGet_tooHigh", arrayGet("array1,array2,array3", 3), "");
+
+    // arraySize
+    displaySuite("arraySize");
+    runTest("arraySize_empty", arraySize(""), 0);
+    runTest("arraySize_one", arraySize("0.0"), 1);
+    runTest("arraySize_many", arraySize("0.0,40.5,11.1,3.6,2"), 5);
+
+    // arrayFind
+    displaySuite("arrayFind");
+    runTest("arrayFind_only", arrayFind("0", "0"), 0);
+    runTest("arrayFind_first", arrayFind("4,33,5,12", 4), 0);
+    runTest("arrayFind_last", arrayFind("4,33,5,12", 12), 3);
+    runTest("arrayFind_middle", arrayFind("4,33,5,12", 33), 1);
+    runTest("arrayFind_noMatch", arrayFind("4,33,5,12", 10), -1);
+    runTest("arrayFind_empty", arrayFind("", 1), -1);
+}

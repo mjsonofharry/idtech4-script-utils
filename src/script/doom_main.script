@@ -97,10 +97,8 @@ This is the main script that is loaded before any level scripts load.
 #include "script/ai_follower.script"
 
 // data structures
-#include "script/list.script"
-
-// tests
-#include "script/listspec.script"
+#include "script/array.script"
+#include "script/arrayspec.script"
 
 void doom_main() {
 	sys.print( "Entering doom_main()\n");
@@ -108,7 +106,7 @@ void doom_main() {
 	//
 	// Do any script setup here
 	//
-	listSpecMain();
+	arraySpecMain();
 
 	sys.print( "Exiting doom_main()\n" );
 }

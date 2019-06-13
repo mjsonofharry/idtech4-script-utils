@@ -1,0 +1,113 @@
+#define ARRAY_MAX_SIZE 128
+
+float strFindFrom( string text, string search, float offset ) {
+    float textLen = sys.strLength( text );
+    float searchLen = sys.strLength( search );
+    string textPart;
+
+    if ( textLen < offset + searchLen ) {
+        return -1;
+    }
+    textPart = sys.strSkip( text, offset );
+    if ( textPart == search ) {
+        return offset;
+    }
+
+    float i;
+    for( i = offset; i < textLen; i++ ) {
+        if ( textLen - i < searchLen ) {
+            break;
+        }
+        textPart = sys.strMid( text, i, searchLen );
+        if ( textPart == search ) {
+            return i;
+        }
+        sys.wait( 0.001 );
+    }
+    return -1;
+}
+
+float strFind( string text, string search ) {
+    return strFindFrom( text, search, 0 );
+}
+
+string arrayAppend( string array, string val ) {
+    if ( val == "" ) {
+        return array;
+    } else if ( ( sys.strLength(array) + sys.strLength(val) + 1 ) > ARRAY_MAX_SIZE ) {
+        return "";
+    } else if ( array == "" ) {
+        return val;
+    } else {
+        return array + "," + val;
+    }
+}
+
+string arrayGet( string array, float idx ) {
+    if ( idx < 0 ) {
+        return "";
+    }
+
+    string slice = array;
+    float len = len = sys.strLength( slice );
+    float delim = -1;
+
+    float count;
+    for( count = 0; slice != ""; count++ ) {
+        delim = strFind( slice, "," );
+        if ( delim < 0 ) {
+            delim = len;
+        }
+        if ( count == idx ) {
+            return sys.strLeft( slice, delim );
+        }
+        slice = sys.strSkip( slice, delim + 1);
+        len = sys.strLength( slice );
+        sys.wait( 0.001 );
+    }
+    return "";
+}
+
+float arraySize( string array ) {
+    if ( array == "" ) {
+        return 0;
+    }
+
+    float len = sys.strLength( array );
+    float pos = 0;
+    float count;
+    for( count = 0; pos < len ; count++ ) {
+        pos = strFindFrom( array, ",", pos );
+        if ( pos < 0 ) {
+            pos = len;
+        }
+        pos++;
+        sys.wait( 0.001 );
+    }
+    return count;
+}
+
+float arrayFind( string array, string val ) {
+    if ( val == "" || val == "," ) {
+        return -1;
+    }
+
+    string slice = array;
+    float len = len = sys.strLength( slice );
+    float delim = -1;
+
+    float count;
+    for( count = 0; slice != ""; count++ ) {
+        delim = strFind( slice, "," );
+        if ( delim < 0 ) {
+            delim = len;
+        }
+        if ( sys.strLeft( slice, delim ) == val ) {
+            return count;
+        }
+        slice = sys.strSkip( slice, delim + 1);
+        len = sys.strLength( slice );
+        sys.wait( 0.001 );
+    }
+    return -1;
+}
