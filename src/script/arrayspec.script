@@ -23,7 +23,8 @@ void arraySpecMain() {
     runTest("arrayAppend_valueIntoEmpty", arrayAppend("", "value"), "value");
     runTest("arrayAppend_value", arrayAppend("array1,array2", "array3"), "array1,array2,array3");
     runTest("arrayAppend_nothingIntoEmpty", arrayAppend("", ""), "");
-    runTest("arrayAppend_nothing", arrayAppend("array1,array2", ""), "array1,array2");
+    runTest("arrayAppend_nothing", arrayAppend("array1,array2", ""), "");
+    runTest("arrayAppend_delim", arrayAppend("array1,array2", ","), "");
     runTest("arrayAppend_arrays", arrayAppend("x,y,z", "a,b,c"), "x,y,z,a,b,c");
     runTest("arrayAppend_maxIntoEmpty", arrayAppend("", STR_SIZE_128), STR_SIZE_128);
     runTest("arrayAppend_valueIntoMax", arrayAppend(STR_SIZE_128, "0"), "");

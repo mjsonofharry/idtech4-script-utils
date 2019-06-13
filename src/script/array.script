@@ -32,8 +32,8 @@ float strFind( string text, string search ) {
 }
 
 string arrayAppend( string array, string val ) {
-    if ( val == "" ) {
-        return array;
+    if ( val == "" || val == "," ) {
+        return "";
     } else if ( ( sys.strLength(array) + sys.strLength(val) + 1 ) > ARRAY_MAX_SIZE ) {
         return "";
     } else if ( array == "" ) {
@@ -63,22 +63,13 @@ string arrayGet( string array, float idx ) {
     if ( idx < 0 ) {
         return "";
     }
-
-    string slice = array;
-    float len = len = sys.strLength( slice );
-    float delim = -1;
-
+    
     float count;
-    for( count = 0; slice != ""; count++ ) {
-        delim = strFind( slice, "," );
-        if ( delim < 0 ) {
-            delim = len;
-        }
+    for( count = 0; array != ""; count++ ) {
         if ( count == idx ) {
-            return sys.strLeft( slice, delim );
+            return arrayHead( array );
         }
-        slice = sys.strSkip( slice, delim + 1);
-        len = sys.strLength( slice );
+        array = arrayTail( array );
         sys.wait( 0.001 );
     }
     return "";
@@ -89,15 +80,9 @@ float arraySize( string array ) {
         return 0;
     }
 
-    float len = sys.strLength( array );
-    float pos = 0;
     float count;
-    for( count = 0; pos < len ; count++ ) {
-        pos = strFindFrom( array, ",", pos );
-        if ( pos < 0 ) {
-            pos = len;
-        }
-        pos++;
+    for( count = 0; array != "" ; count++ ) {
+        array = arrayTail( array );
         sys.wait( 0.001 );
     }
     return count;
@@ -108,22 +93,15 @@ float arrayFind( string array, string val ) {
         return -1;
     }
 
-    string slice = array;
-    float len = len = sys.strLength( slice );
-    float delim = -1;
-
+    string currentVal;
     float count;
-    for( count = 0; slice != ""; count++ ) {
-        delim = strFind( slice, "," );
-        if ( delim < 0 ) {
-            delim = len;
-        }
-        if ( sys.strLeft( slice, delim ) == val ) {
+    for( count = 0; array != ""; count++ ) {
+        currentVal = arrayHead( array );
+        if ( currentVal == val ) {
             return count;
         }
-        slice = sys.strSkip( slice, delim + 1);
-        len = sys.strLength( slice );
-        sys.wait( 0.001 );
+        array = arrayTail( array );
     }
+    
     return -1;
 }
