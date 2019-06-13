@@ -98,7 +98,10 @@ This is the main script that is loaded before any level scripts load.
 
 // data structures
 #include "script/array.script"
+#include "script/list.script"
+#include "script/testingcore.script"
 #include "script/arrayspec.script"
+#include "script/listspec.script"
 
 void doom_main() {
 	sys.print( "Entering doom_main()\n");
@@ -107,6 +110,7 @@ void doom_main() {
 	// Do any script setup here
 	//
 	arraySpecMain();
+	listSpecMain();
 
 	sys.print( "Exiting doom_main()\n" );
 }

@@ -1,21 +1,6 @@
 #define STR_SIZE_127 "-------------------------------------------------------------------------------------------------------------------------------"
 #define STR_SIZE_128 "--------------------------------------------------------------------------------------------------------------------------------"
 
-void displaySuite(string id) {
-    sys.println("");
-    sys.println(" ----- Running testing suite for " + id + " -----");
-}
-
-float runTest(string id, string actual, string expected) {
-    if (actual == expected) {
-        sys.println(id + " passed");
-        return 1;
-    } else {
-        sys.println(id + " FAILED - expected '" + expected + "' but got '" + actual + "'");
-        return 0;
-    }
-}
-
 void arraySpecMain() {
     runTest("failure_test", true, false);
 

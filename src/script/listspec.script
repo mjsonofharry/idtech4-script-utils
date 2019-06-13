@@ -1,0 +1,13 @@
+void listSpecMain() {
+    // listAppend
+    displaySuite("listAppend");
+    runTest("listAppend_firstValue", listAppend("list1", "x"), "list1_0");
+    runTest("listAppend_secondValue", listAppend("list1", "y"), "list1_1");
+    runTest("listAppend_secondValue", listAppend("list1", "z"), "list1_2");
+
+    // listGet
+    displaySuite("listAppend");
+    runTest("listGet_firstValue", listGet("list1", 0), "x");
+    runTest("listGet_secondValue", listGet("list1", 1), "y");
+    runTest("listGet_thirdValue", listGet("list1", 2), "z");
+}

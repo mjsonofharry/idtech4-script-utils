@@ -1,0 +1,35 @@
+string listAppend( string listName, string value ) {
+    float i = 0;
+    string nodeData;
+    string nodeName;
+    while( true ) {
+        nodeName = listName + "_" + i;
+        nodeData = sys.getPersistantString( nodeName );
+        if ( nodeData == "" ) {
+            sys.setPersistantArg( nodeName, value );
+            break;
+        }
+        i++;
+        sys.wait( 0.001 );
+    }
+    return nodeName;
+}
+
+string listGet( string listName, float idx ) {
+    float i = 0;
+    string nodeData;
+    string nodeName;
+    while( true ) {
+        nodeName = listName + "_" + i;
+        nodeData = sys.getPersistantString( nodeName );
+        if ( nodeData == "" ) {
+            break;
+        }
+        if ( i == idx ) {
+            return nodeData;
+        }
+        i++;
+        sys.wait( 0.001 );
+    }
+    return "";
+}
