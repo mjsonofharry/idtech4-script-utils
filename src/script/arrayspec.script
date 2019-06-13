@@ -68,4 +68,14 @@ void arraySpecMain() {
     runTest("arrayFind_middle", arrayFind("4,33,5,12", 33), 1);
     runTest("arrayFind_noMatch", arrayFind("4,33,5,12", 10), -1);
     runTest("arrayFind_empty", arrayFind("", 1), -1);
+
+    // arrayRemove
+    displaySuite("arrayRemove");
+    runTest("arrayRemove_empty", arrayRemove("", 0), "");
+    runTest("arrayRemove_only", arrayRemove("one", 0), "");
+    runTest("arrayRemove_first", arrayRemove("one,two,three", 0), "two,three");
+    runTest("arrayRemove_middle", arrayRemove("one,two,three", 1), "one,three");
+    runTest("arrayRemove_last", arrayRemove("one,two,three", 2), "one,two");
+    runTest("arrayRemove_negative", arrayRemove("one,two,three", -1), "one,two,three");
+    runTest("arrayRemove_tooHigh", arrayRemove("one,two,three", 3), "one,two,three");
 }

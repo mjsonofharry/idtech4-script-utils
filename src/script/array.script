@@ -105,3 +105,20 @@ float arrayFind( string array, string val ) {
     
     return -1;
 }
+
+string arrayRemove( string array, float idx ) {
+    if ( idx < 0 ) {
+        return array;
+    }
+
+    string result = "";
+    float count;
+    for( count = 0; array != ""; count++ ) {
+        if ( count != idx ) {
+            result = arrayAppend( result, arrayHead( array ) );
+        }
+        array = arrayTail( array );
+        sys.wait( 0.001 );
+    }
+    return result;
+}
