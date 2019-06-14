@@ -20,9 +20,31 @@ Please note that string.script must be imported before array.script.
 
 An array is a `string` type that stores comma-separated values. Arrays are immutable. The max length of an array is 128 characters. Empty strings and commas are considered illegal. All data types must be encoded as strings in order to be stored in the array; this may lead to increased memory usage.
 
+The following are examples of arrays:
+
+`"monster_demon_imp_534,monster_demon_imp_535,monster_demon_imp_536"`
+
+If elements have a common prefix then consider ommitting the prefix to save space:
+
+`"534,535,536,537,538,339,540,541"`
+
+Elements can be decimals:
+
+`"123.4,273.5,90.2"`
+
+Or mixed types:
+
+`"test1,test2,35.2,x"`
+
 #### List
 
-A list is a `string` type containing a partial reference to a persistent argument. The list functions link persistent arguments together into a sequence of nodes. Lists are mutable. Furthermore, they must be garbage collected and they can only exist at the global scope. However, they have no known size restrictions.
+A list is a `string` type containing the unique name or ID of a list. The list functions work by linking persistent arguments together into sequences of nodes. Lists are mutable. Furthermore, they must be garbage collected, and they can only exist at the global scope. However, they have no known size restrictions.
+
+The list name will be combined with an integer suffix to generate references to all of the nodes in the list. For example, you might define your list as follows:
+
+`string list = "entity_list";`
+
+The first node will be identified `entity_list_0`, the second `entity_list_1`, the third `entity_list_2`, and so on. These nodes are persistent arguments, which means any entity may access them. Thus, it's important to ensure that you come up with unique names for your lists.
 
 ### Function Reference
 
