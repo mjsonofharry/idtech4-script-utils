@@ -2,12 +2,33 @@ void listSpecMain() {
     // listAppend
     displaySuite("listAppend");
     runTest("listAppend_firstValue", listAppend("list1", "x"), "list1_0");
-    runTest("listAppend_secondValue", listAppend("list1", "y"), "list1_1");
-    runTest("listAppend_thirdValue", listAppend("list1", "z"), "list1_2");
+    runTest("listAppend_middleValue", listAppend("list1", "y"), "list1_1");
+    runTest("listAppend_lastValue", listAppend("list1", "z"), "list1_2");
 
     // listGet
     displaySuite("listGet");
     runTest("listGet_firstValue", listGet("list1", 0), "x");
-    runTest("listGet_secondValue", listGet("list1", 1), "y");
-    runTest("listGet_thirdValue", listGet("list1", 2), "z");
+    runTest("listGet_middleValue", listGet("list1", 1), "y");
+    runTest("listGet_lastValue", listGet("list1", 2), "z");
+    runTest("listGet_fromEmpty", listGet("list2", 0), "");
+    runTest("listGet_negative", listGet("list1", -1), "");
+    runTest("listGet_tooHigh", listGet("list1", 3), "");
+
+    // listSize
+    displaySuite("listSize");
+    runTest("listSize_three", listSize("list1"), 3);
+
+    // listFind
+    displaySuite("listFind");
+    runTest("listFind_firstValue", listFind("list1", "x"), 0);
+    runTest("listFind_middleValue", listFind("list1", "y"), 1);
+    runTest("listFind_lastValue", listFind("list1", "z"), 2);
+    runTest("listFind_fromEmpty", listFind("list2", "x"), -1);
+    runTest("listFind_noMatch", listFind("list1", "q"), -1);
+
+    // listClear
+    displaySuite("listClear");
+    runTest("listClear_three", listClear("list1"), 3);
+    runTest("listClear_get", listGet("list1", 0), "");
+    runTest("listClear_size", listSize("list1"), 0);
 }

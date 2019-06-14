@@ -1,12 +1,10 @@
-string listAppend( string listName, string value ) {
+string listAppend( string listName, string val ) {
     float i = 0;
-    string nodeData;
     string nodeName;
     while( true ) {
         nodeName = listName + "_" + i;
-        nodeData = sys.getPersistantString( nodeName );
-        if ( nodeData == "" ) {
-            sys.setPersistantArg( nodeName, value );
+        if ( sys.getPersistantString( nodeName ) == "" ) {
+            sys.setPersistantArg( nodeName, val );
             break;
         }
         i++;
@@ -32,4 +30,45 @@ string listGet( string listName, float idx ) {
         sys.wait( 0.001 );
     }
     return "";
+}
+
+float listSize( string listName ) {
+    float i = 0;
+    while ( true ) {
+        if ( sys.getPersistantString( listName + "_" + i ) == "" ) {
+            break;
+        }
+        i++;
+    }
+    return i;
+}
+
+float listFind( string listName, string val ) {
+    string nodeData;
+    float i = 0;
+    while ( true ) {
+        nodeData = sys.getPersistantString( listName + "_" + i );
+        if ( nodeData == "" ) {
+            break;
+        }
+        if ( nodeData == val ) {
+            return i;
+        }
+        i++;
+    }
+    return -1;
+}
+
+float listClear( string listName ) {
+    string nodeName;
+    float i = 0;
+    while ( true ) {
+        nodeName = listName + "_" + i;
+        if ( sys.getPersistantString( nodeName ) == "" ) {
+            break;
+        }
+        sys.setPersistantArg( nodeName, "" );
+        i++;
+    }
+    return i;
 }
