@@ -24,7 +24,7 @@ The following are examples of arrays:
 
 `"monster_demon_imp_534,monster_demon_imp_535,monster_demon_imp_536"`
 
-If elements have a common prefix then consider ommitting the prefix to save space:
+If elements have a common prefix then consider omitting the prefix to save space:
 
 `"534,535,536,537,538,339,540,541"`
 
