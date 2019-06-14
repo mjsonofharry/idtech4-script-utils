@@ -2,7 +2,7 @@
 
 ## Usage
 
-### Imports
+### Importing the library
 
 Add the following lines to your main script (e.g. doom_main.script):
 
@@ -12,9 +12,9 @@ Add the following lines to your main script (e.g. doom_main.script):
 #include "script/list.script"
 ```
 
-Please note that array.script must be imported after string.script.
+Please note that string.script must be imported before array.script.
 
-### Data Structures
+### Understanding the data structures
 
 #### Array
 
@@ -24,9 +24,9 @@ An array is a `string` type that stores comma-separated values. Arrays are immut
 
 A list is a `string` type containing a partial reference to a persistent argument. The list functions link persistent arguments together into a sequence of nodes. Lists are mutable. Furthermore, they must be garbage collected and they can only exist at the global scope. However, they have no known size restrictions.
 
-### Functions
+### Function Reference
 
-#### String
+#### String Functions
 
 Find the first occurance of a substring starting from a given position:
 
@@ -40,7 +40,7 @@ Get any and all digits from the right side of a string ('.' counts as a digit):
 
 `string strRightDigits( string text )`
 
-#### Array
+#### Array Functions
 
 Get the first element of an array:
 
@@ -66,11 +66,11 @@ Get the index of a particular element in the array:
 
 `float arrayFind( string array, string val )`
 
-Remove the element at a particular index of an array:
+Get every element of the array except for the element at a particular index:
 
 `string arrayRemove( string array, float idx )`
 
-#### List
+#### List Functions
 
 Create a new list or add an element to an existing list:
 
