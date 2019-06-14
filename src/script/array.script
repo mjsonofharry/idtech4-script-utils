@@ -1,36 +1,5 @@
 #define ARRAY_MAX_SIZE 128
 
-float strFindFrom( string text, string search, float offset ) {
-    float textLen = sys.strLength( text );
-    float searchLen = sys.strLength( search );
-    string textPart;
-
-    if ( textLen < offset + searchLen ) {
-        return -1;
-    }
-    textPart = sys.strSkip( text, offset );
-    if ( textPart == search ) {
-        return offset;
-    }
-
-    float i;
-    for( i = offset; i < textLen; i++ ) {
-        if ( textLen - i < searchLen ) {
-            break;
-        }
-        textPart = sys.strMid( text, i, searchLen );
-        if ( textPart == search ) {
-            return i;
-        }
-        sys.wait( 0.001 );
-    }
-    return -1;
-}
-
-float strFind( string text, string search ) {
-    return strFindFrom( text, search, 0 );
-}
-
 string arrayAppend( string array, string val ) {
     if ( val == "" || val == "," ) {
         return "";

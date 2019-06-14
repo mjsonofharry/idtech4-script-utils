@@ -2,22 +2,6 @@
 #define STR_SIZE_128 "--------------------------------------------------------------------------------------------------------------------------------"
 
 void arraySpecMain() {
-    runTest("failure_test", true, false);
-
-    // strFind
-    displaySuite("strFind");
-    runTest("strFind_start", strFind("hello world", "h"), 0);
-    runTest("strFind_end", strFind("hello world", "d"), 10);
-    runTest("strFind_middle", strFind("hello world", " "), 5);
-    runTest("strFind_exact", strFind("h", "h"), 0);
-    runTest("strFind_notFound", strFind("hello world", ","), -1);
-    runTest("strFind_tooLong", strFind("hello world", "hello world!"), -1);
-    runTest("strFind_multiStart", strFind("hello world", "hell"), 0);
-    runTest("strFind_multiEnd", strFind("hello world", "orld"), 7);
-    runTest("strFind_multiMiddle", strFind("hello world", "o w"), 4);
-    runTest("strFind_multiExact", strFind("hello world", "hello world"), 0);
-    runTest("strFind_multiNotFound", strFind("hello world", ","), -1);
-
     // arrayAppend
     displaySuite("arrayAppend");
     runTest("arrayAppend_valueIntoEmpty", arrayAppend("", "value"), "value");

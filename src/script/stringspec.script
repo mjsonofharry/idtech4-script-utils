@@ -1,0 +1,31 @@
+void stringSpecMain() {
+    // strFind
+    displaySuite("strFind");
+    runTest("strFind_nothingFromEmpty", strFind("", ""), 0);
+    runTest("strFind_fromEmpty", strFind("", "a"), -1);
+    runTest("strFind_start", strFind("hello world", "h"), 0);
+    runTest("strFind_end", strFind("hello world", "d"), 10);
+    runTest("strFind_middle", strFind("hello world", " "), 5);
+    runTest("strFind_exact", strFind("h", "h"), 0);
+    runTest("strFind_notFound", strFind("hello world", ","), -1);
+    runTest("strFind_tooLong", strFind("hello world", "hello world!"), -1);
+    runTest("strFind_multiStart", strFind("hello world", "hell"), 0);
+    runTest("strFind_multiEnd", strFind("hello world", "orld"), 7);
+    runTest("strFind_multiMiddle", strFind("hello world", "o w"), 4);
+    runTest("strFind_multiExact", strFind("hello world", "hello world"), 0);
+    runTest("strFind_multiNotFound", strFind("hello world", ","), -1);
+
+    // strRightDigits
+    displaySuite("strRightDigits");
+    runTest("strRightDigits_empty", strRightDigits(""), "");
+    runTest("strRightDigits_justZero", strRightDigits("0"), "0");
+    runTest("strRightDigits_justDigit", strRightDigits("2"), "2");
+    runTest("strRightDigits_justManyDigits", strRightDigits("1234050"), "1234050");
+    runTest("strRightDigits_leftAlphaRightDigit", strRightDigits("A1"), "1");
+    runTest("strRightDigits_leftAlphaRightManyDigits", strRightDigits("A1054"), "1054");
+    runTest("strRightDigits_leftManyAlphaAndDigits", strRightDigits("ABCD1234.5"), "1234.5");
+    runTest("strRightDigits_manyMixed", strRightDigits("%$N&F==fadffds454dsf3.2"), "3.2");
+    runTest("strRightDigits_multiDecimal", strRightDigits("abcde_4.3.4"), "4.3.4");
+    runTest("strRightDigits_monster", strRightDigits("idAI_monster_demon_imp_534"), "534");
+    runTest("strRightDigits_monsterAllDigits", strRightDigits("idAI_monster_demon_imp_0123456789"), "0123456789");
+}

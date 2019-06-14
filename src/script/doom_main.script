@@ -97,9 +97,13 @@ This is the main script that is loaded before any level scripts load.
 #include "script/ai_follower.script"
 
 // data structures
+#include "script/string.script"
 #include "script/array.script"
 #include "script/list.script"
+
+// data structure tests
 #include "script/testingcore.script"
+#include "script/stringspec.script"
 #include "script/arrayspec.script"
 #include "script/listspec.script"
 
@@ -109,6 +113,7 @@ void doom_main() {
 	//
 	// Do any script setup here
 	//
+	stringSpecMain();
 	arraySpecMain();
 	listSpecMain();
 
