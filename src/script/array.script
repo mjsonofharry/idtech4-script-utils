@@ -62,11 +62,9 @@ float arrayFind( string array, string val ) {
         return -1;
     }
 
-    string currentVal;
     float count;
     for( count = 0; array != ""; count++ ) {
-        currentVal = arrayHead( array );
-        if ( currentVal == val ) {
+        if ( arrayHead( array ) == val ) {
             return count;
         }
         array = arrayTail( array );
