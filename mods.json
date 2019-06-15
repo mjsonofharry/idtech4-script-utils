@@ -1,13 +1,26 @@
 [
     {
         "game_title": "dhewm 3",
-        "mod_title": "Doom 3 Script Utils",
+        "mod_title": "Tests for Doom 3 Script Utils",
         "is_pk4": true,
-        "sources": ["src"],
+        "sources": ["src", "test"],
         "base_path": "D:\\dhewm3",
         "game": "base",
         "zip_name": "d3utils",
         "pk4_name": "zzzd3utils",
-        "should_deploy": true
+        "should_deploy": false,
+        "should_install": true
+    },
+    {
+        "game_title": "Doom 3",
+        "mod_title": "Doom 3 Script Utils",
+        "is_pk4": true,
+        "sources": ["src"],
+        "base_path": "",
+        "game": "",
+        "zip_name": "d3utils",
+        "pk4_name": "zzzd3utils",
+        "should_deploy": true,
+        "should_install": false
     }
 ]

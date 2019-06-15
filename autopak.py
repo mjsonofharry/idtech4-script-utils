@@ -36,7 +36,8 @@ Mod = namedtuple('Mod', [
     'game',
     'zip_name',
     'pk4_name',
-    'should_deploy'
+    'should_deploy',
+    'should_install'
 ])
 
 
@@ -54,7 +55,8 @@ def mod_definition_decoder(obj):
         game=obj['game'],
         zip_name=obj['zip_name'],
         pk4_name=obj['pk4_name'],
-        should_deploy=obj['should_deploy']
+        should_deploy=obj['should_deploy'],
+        should_install=obj['should_install']
     )
 
 
@@ -146,7 +148,8 @@ def main():
         object_hook=mod_definition_decoder)
     for mod in mod_defs:
         if goal == 'install':
-            install(mod)
+            if mod.should_install:
+                install(mod)
         elif goal == 'deploy':
             if mod.should_deploy:
                 deploy(mod)
