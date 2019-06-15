@@ -18,7 +18,9 @@ Please note that string.script must be imported before array.script.
 
 #### As a pk4
 
-If you are including the whole script utils library in pk4 format, ensure that it loads after the base game's packages and before your mod's packages. By default, the script utils come in a pk4 named `zzzd3utils.pk4`, but you may need to rename the pk4 in order to ensure the correct load order. Within a single folder id Tech 4 loads pk4 files in ascending alphabetical order. If an asset (a script, texture, map, etc) is defined in one pk4 and then redefined in a pk4 that comes later, the redefined version takes priority. All assets defined within a game folder set with `fs_game` will take priority over any assets defined in the base folder.
+If you are including the whole script utils library in pk4 format, ensure that it loads after the base game's packages and before your mod's packages. By default, the script utils come in a pk4 named `zzzd3utils.pk4`, but you may need to rename the pk4 in order to ensure the correct load order.
+
+Within a single folder id Tech 4 loads pk4 files in ascending alphabetical order. If an asset (a script, texture, map, etc) is defined in one pk4 and then redefined in a pk4 that comes later, the redefined version takes priority. All assets defined within a game folder set with `fs_game` will take priority over any assets defined in the base folder.
 
 This example is correct because `pak009_d3utils.pk4` loads before `zzzmymod.pk4` and after the game's pk4 files:
 
